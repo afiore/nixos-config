@@ -21,6 +21,13 @@
       "EDITOR" = "vim";
     };
     initExtra = "source ${pkgs.zsh-powerlevel9k}/share/zsh-powerlevel9k/powerlevel9k.zsh-theme";
+    shellAliases = {
+      "cfgcd" = "cd ~/.config/nixpkgs";
+      "cfgbh" = "home-manager build";
+      "cfgsh" = "home-manager build";
+      "cfgt" = "sudo nixos-rebuild test";
+      "cfgs" = "sudo nixos-rebuild switch";
+    };
   };
   
   programs.git = {
@@ -47,10 +54,11 @@
 
   #xsession = {
   #  enable = true;
-  #  pointerCursor = {
-  #    name = "Vanilla-DMZ";
-  #    size = 64;
-  #  };
+
+  #  #pointerCursor = {
+  #  #  name = "Vanilla-DMZ";
+  #  #  size = 64;
+  #  #};
   #};
 }
 
