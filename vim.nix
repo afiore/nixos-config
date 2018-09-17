@@ -1,1 +1,1 @@
-/etc/nixos/vim.nix
+../../../../etc/nixos/vim.nix

@@ -27,6 +27,8 @@
       "cfgsh" = "home-manager build";
       "cfgt" = "sudo nixos-rebuild test";
       "cfgs" = "sudo nixos-rebuild switch";
+      "cfgeh" = "cfgcd && $EDITOR home.nix";
+      "cfgec" = "cfgcd && $EDITOR configuration.nix";
     };
   };
   
