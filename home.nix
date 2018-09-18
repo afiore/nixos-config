@@ -6,6 +6,7 @@
     pkgs.zsh 
     pkgs.zsh-powerlevel9k
     pkgs.nix-zsh-completions
+    pkgs.i3
   ];
 
   programs.zsh = {
@@ -54,13 +55,18 @@
 
   manual.manpages.enable = true;
 
-  #xsession = {
-  #  enable = true;
+  xsession = {
+    enable = true;
+    windowManager = {
+      i3 = {
+        enable = true;
+      };
+    }
 
-  #  #pointerCursor = {
-  #  #  name = "Vanilla-DMZ";
-  #  #  size = 64;
-  #  #};
-  #};
+    #pointerCursor = {
+    #  name = "Vanilla-DMZ";
+    #  size = 64;
+    #};
+  };
 }
 

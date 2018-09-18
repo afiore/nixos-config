@@ -63,6 +63,8 @@
      git jq tmux neovim
      # web
      wget curl firefoxWrapper google-chrome
+     # x11
+     xorg.xcursorthemes
      # fonts
      source-code-pro fontconfig-ultimate
       # scala
@@ -139,69 +141,11 @@
     desktopManager = {
       xterm.enable = false;
       default = "none";
-      xfce = {
-        enable = false;
-        noDesktop = true;
-        enableXfwm = false;
-      };
-    };
-
-    windowManager.i3 = {
-      enable = true;
+      plasma5.enable = true;
     };
 
 
     displayManager.lightdm.enable = true;
-    # TODO: move to home
-    displayManager.sessionCommands = ''
-       xrdb "${pkgs.writeText  "xrdb.conf" ''
-          URxvt.font:                 xft:Source code pro:size=14
-          XTerm*faceName:             xft:Source code pro:size=14
-
-          !-- 
-	        URxvt.perl-ext-common: ...,font-size
-          URxvt.keysym.C-minus: perl:font-size:decrease
-          URxvt.keysym.C-equal: perl:font-size:increase
-          URxvt.font-size.step: 4
-
-          !-- the arc guy theme
-          urxvt*scrollBar: false
-          urxvt*matcher.button: 1
-          urxvt.transparent: false
-          urxvt.boldFont:
-          !-- Xft*dpi: 96
-          Xft*antialias: true
-          Xft*hinting: true
-          Xft*hintstyle: hintfull
-          URxvt*cursorUnderline:  true
-          Xft*rgba: rgb
-          URxvt*geometry: 85x20
-          *internalBorder: 23
-          URxvt*fading: 0
-          URxvt*tintColor: #ffffff
-          URxvt*shading: 0
-          URxvt*inheritPixmap: False
-          URxvt.color0: #3B444F
-          URxvt.color8: #4A585A
-          URxvt.color1: #CD546C
-          URxvt.color9: #CD546C
-          URxvt.color2: #A5AF86
-          URxvt.color10: #BDC79E
-          URxvt.color3: #CD7860
-          URxvt.color11: #E88773
-          URxvt.color4: #7A9388
-          URxvt.color12: #94B1A3
-          URxvt.color5: #75434C
-          URxvt.color13: #BB6C73
-          URxvt.color6: #767D75
-          URxvt.color14: #9DA69E
-          URxvt.color7: #C2C2A8
-          URxvt.color15: #DBDAC1
-          URxvt.background: #292929
-          URxvt.foreground: #a3a6ab
-       ''}"
-    '';
-
 
     dpi = 168;
   };
