@@ -7,6 +7,8 @@
     pkgs.zsh-powerlevel9k
     pkgs.nix-zsh-completions
     pkgs.i3
+    pkgs.jq
+    pkgs.tmux
   ];
 
   programs.zsh = {
@@ -21,7 +23,10 @@
       "TERM" = "xterm-256color";
       "EDITOR" = "vim";
     };
-    initExtra = "source ${pkgs.zsh-powerlevel9k}/share/zsh-powerlevel9k/powerlevel9k.zsh-theme";
+    initExtra = ''
+      source ${pkgs.zsh-powerlevel9k}/share/zsh-powerlevel9k/powerlevel9k.zsh-theme
+      ${pkgs.tmux}/bin/tmux new
+    '';
     shellAliases = {
       "cfgcd" = "cd ~/.config/nixpkgs";
       "cfgbh" = "home-manager build";
@@ -29,7 +34,7 @@
       "cfgt" = "sudo nixos-rebuild test";
       "cfgs" = "sudo nixos-rebuild switch";
       "cfgeh" = "cfgcd && $EDITOR home.nix";
-      "cfgec" = "cfgcd && $EDITOR configuration.nix";
+      "cfge" = "cfgcd && $EDITOR configuration.nix";
     };
   };
   
@@ -55,18 +60,14 @@
 
   manual.manpages.enable = true;
 
-  xsession = {
-    enable = true;
-    windowManager = {
-      i3 = {
-        enable = true;
-      };
-    }
+  #xsession = {
+  #  enable = true;
+  #  command = "${pkgs.i3}/bin/i3";
 
-    #pointerCursor = {
-    #  name = "Vanilla-DMZ";
-    #  size = 64;
-    #};
-  };
+  #  #pointerCursor = {
+  #  #  name = "Vanilla-DMZ";
+  #  #  size = 64;
+  #  #};
+  #};
 }
 

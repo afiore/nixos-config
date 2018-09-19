@@ -60,21 +60,23 @@
      # utils:
      p7zip keepassxc 
      # dev tools
-     git jq tmux neovim
+     git neovim
      # web
      wget curl firefoxWrapper google-chrome
      # x11
      xorg.xcursorthemes
      # fonts
      source-code-pro fontconfig-ultimate
-      # scala
+     # scala
      sbt ammonite                                          
+     # rustlang
+     rustup cargo
      # window manager
      i3lock i3status xorg.xbacklight networkmanagerapplet  
      # productivity
      slack zoom-us google-drive-ocamlfuse
      # shell
-     zsh rxvt_unicode_with-plugins urxvt_font_size urxvt_theme_switch
+     rxvt_unicode_with-plugins urxvt_font_size urxvt_theme_switch
   ];
 
 
@@ -144,6 +146,12 @@
       plasma5.enable = true;
     };
 
+    windowManager = {
+      default = "i3";
+      i3 = {
+        enable = true;
+      };
+    };
 
     displayManager.lightdm.enable = true;
 
