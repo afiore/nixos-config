@@ -153,7 +153,7 @@
       };
     };
 
-    displayManager.lightdm.enable = true;
+    displayManager.slim.enable = true;
 
     dpi = 168;
   };

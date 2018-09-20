@@ -47,11 +47,9 @@ pkgs.neovim.override {
       :tnoremap <Esc> <C-\><C-n>
 
 
-
       filetype plugin on    " Enable filetype-specific plugins
 
       " vim-colors-solarized
-
 
       " airline settings
 
@@ -93,6 +91,9 @@ pkgs.neovim.override {
           "gitgutter"
           "vim-airline-themes"
           "vim-nix"
+          "github:rust-lang/rust.vim"
+          "github:racer-rust/vim-racer"
+          "github:roxma/nvim-cm-racer"
         ];
       }
     ];
