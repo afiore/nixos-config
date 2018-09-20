@@ -9,6 +9,7 @@
     pkgs.i3
     pkgs.jq
     pkgs.tmux
+    pkgs.docker_compose
   ];
 
   programs.zsh = {
@@ -24,13 +25,17 @@
       "EDITOR" = "vim";
     };
     initExtra = ''
+      # set vi mode
+      bindkey -v
+      export KEYTIMEOUT=1
+      # init prompt
       source ${pkgs.zsh-powerlevel9k}/share/zsh-powerlevel9k/powerlevel9k.zsh-theme
-      ${pkgs.tmux}/bin/tmux new
+
     '';
     shellAliases = {
       "cfgcd" = "cd ~/.config/nixpkgs";
       "cfgbh" = "home-manager build";
-      "cfgsh" = "home-manager build";
+      "cfgsh" = "home-manager switch";
       "cfgt" = "sudo nixos-rebuild test";
       "cfgs" = "sudo nixos-rebuild switch";
       "cfgeh" = "cfgcd && $EDITOR home.nix";

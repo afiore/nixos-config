@@ -91,9 +91,6 @@ pkgs.neovim.override {
           "gitgutter"
           "vim-airline-themes"
           "vim-nix"
-          "github:rust-lang/rust.vim"
-          "github:racer-rust/vim-racer"
-          "github:roxma/nvim-cm-racer"
         ];
       }
     ];

@@ -59,7 +59,9 @@
      pciutils htop
      # utils:
      p7zip keepassxc 
-     # dev tools
+     # build tools
+     binutils gcc gnumake openssl openssl.dev pkgconfig
+     # dev
      git neovim
      # web
      wget curl firefoxWrapper google-chrome
