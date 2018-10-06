@@ -10,6 +10,7 @@
     pkgs.jq
     pkgs.tmux
     pkgs.docker_compose
+    pkgs.postman
   ];
 
   programs.zsh = {

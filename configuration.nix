@@ -44,8 +44,8 @@
   # Select internationalisation properties.
   i18n = {
     consoleFont = "latarcyrheb-sun32";
-    consoleKeyMap = "us";
-    defaultLocale = "en_US.UTF-8";
+    consoleKeyMap = "uk";
+    defaultLocale = "en_GB.UTF-8";
   };
 
   # Set your time zone.
@@ -58,7 +58,7 @@
   environment.systemPackages = with pkgs; [
      pciutils htop
      # utils:
-     p7zip keepassxc 
+     p7zip keepassxc openconnect oathToolkit
      # build tools
      binutils gcc gnumake openssl openssl.dev pkgconfig
      # dev
@@ -74,7 +74,7 @@
      # rustlang
      rustup cargo
      # window manager
-     i3lock i3status xorg.xbacklight networkmanagerapplet  
+     i3lock i3status xorg.xbacklight networkmanagerapplet xsel maim
      # productivity
      slack zoom-us google-drive-ocamlfuse
      # shell
@@ -92,6 +92,9 @@
     terminal = "xterm-256color";
     shortcut = "a";
     clock24 = true;
+    extraTmuxConf = ''
+set-option -g renumber-windows on
+    '';
   };
 
 
@@ -101,7 +104,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh.enable = false;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -155,7 +158,10 @@
       };
     };
 
-    displayManager.slim.enable = true;
+    displayManager.slim = {
+      enable = true;
+      defaultUser = "andrea";
+    };
 
     dpi = 168;
   };
@@ -180,7 +186,7 @@
     shell = pkgs.zsh;
   };
 
-
+  
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
