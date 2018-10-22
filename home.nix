@@ -11,6 +11,7 @@
     pkgs.tmux
     pkgs.docker_compose
     pkgs.postman
+    pkgs.awscli
   ];
 
   programs.zsh = {
