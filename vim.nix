@@ -74,6 +74,9 @@ pkgs.neovim.override {
 
       " Clean up artifacts in neovim, see https://github.com/neovim/neovim/issues/5990
       let $VTE_VERSION="100"
+
+      " load vim plug
+      source ~/.config/nvim/init.vim
     '';
 
     vam.knownPlugins = pkgs.vimPlugins; # optional

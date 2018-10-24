@@ -74,7 +74,7 @@
      # rustlang
      rustup cargo
      # window manager
-     i3lock i3status xorg.xbacklight networkmanagerapplet xsel maim
+     i3lock i3status xorg.xbacklight networkmanagerapplet xsel xclip maim
      # productivity
      slack zoom-us google-drive-ocamlfuse
      # shell
