@@ -12,6 +12,7 @@
     pkgs.docker_compose
     pkgs.postman
     pkgs.awscli
+    pkgs.universal-ctags
   ];
 
   programs.zsh = {
@@ -31,9 +32,11 @@
       bindkey -v
       export KEYTIMEOUT=1
       bindkey "^R" history-incremental-search-backward
+
       # init prompt
       source ${pkgs.zsh-powerlevel9k}/share/zsh-powerlevel9k/powerlevel9k.zsh-theme
 
+      export PATH=$PATH:$HOME/.cargo/bin
     '';
     shellAliases = {
       "cfgcd" = "cd ~/.config/nixpkgs";
@@ -44,6 +47,18 @@
       "cfgeh" = "cfgcd && $EDITOR home.nix";
       "cfge" = "cfgcd && $EDITOR configuration.nix";
     };
+    plugins = [
+      {
+        # will source nix-shell.plugin.zsh
+        name = "nix-shell";
+        src = pkgs.fetchFromGitHub {
+          owner = "chisui";
+          repo = "zsh-nix-shell";
+          rev = "master";
+          sha256 = "10g8m632s4ibbgs8ify8n4h9r4x48l95gvb57lhw4khxs6m8j30q";
+        };
+      }
+    ];
   };
   
   programs.git = {

@@ -35,42 +35,16 @@ pkgs.neovim.override {
       set foldmethod=syntax
 
       """ Keep all folds open when a file is opened
-      augroup OpenAllFoldsOnFileOpen
-          autocmd!
-          autocmd BufRead * normal zR
-      augroup END
+      set foldlevel=99
 
       """ Don't open folds with block motions
-      set foldopen-=block
+      " set foldopen-=block
 
       " Map esc to exit terminal mode
       :tnoremap <Esc> <C-\><C-n>
 
-
       filetype plugin on    " Enable filetype-specific plugins
 
-      " vim-colors-solarized
-
-      " airline settings
-
-      set background=dark
-      colorscheme solarized
-
-      let g:airline_theme = 'solarized'
-      let g:airline_solarized_bg='dark'
-      let g:airline_powerline_fonts = 1
-      let g:airline#extensions#tabline#enabled = 1
-
-      " gitgutter settings
-      let g:gitgutter_max_signs = 2000
-
-      " vim-multiple-cursors settings
-      nnoremap <silent> <M-j> :MultipleCursorsFind <C-R>/<CR>
-      vnoremap <silent> <M-j> :MultipleCursorsFind <C-R>/<CR>
-
-      " ctrl-p settings
-      let g:ctrlp_max_files = 100000
-      let g:ctrlp_max_depth = 40
 
       " Clean up artifacts in neovim, see https://github.com/neovim/neovim/issues/5990
       let $VTE_VERSION="100"
@@ -78,24 +52,5 @@ pkgs.neovim.override {
       " load vim plug
       source ~/.config/nvim/init.vim
     '';
-
-    vam.knownPlugins = pkgs.vimPlugins; # optional
-    vam.pluginDictionaries = [
-      {
-        names = [
-          "airline"
-          "alchemist-vim"
-          "ctrlp"
-          "fugitive"
-          "surround"
-          "Solarized"
-          "multiple-cursors"
-          "syntastic"
-          "gitgutter"
-          "vim-airline-themes"
-          "vim-nix"
-        ];
-      }
-    ];
   };
 }
