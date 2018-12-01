@@ -59,7 +59,9 @@
   environment.systemPackages = with pkgs; [
      pciutils htop
      # utils:
-     p7zip keepassxc openconnect oathToolkit
+     p7zip keepassxc openconnect oathToolkit tmux
+
+     # bluetooth
      blueman
      # build tools
      binutils gcc gnumake openssl openssl.dev pkgconfig
@@ -67,18 +69,12 @@
      git neovim
      # web
      wget curl firefoxWrapper google-chrome
-     # x11
-     xorg.xcursorthemes
      # fonts
      source-code-pro fontconfig-ultimate
-     # scala
-     sbt ammonite                                          
-     # rustlang
-     rustup cargo
+     # x11
+     xorg.xcursorthemes xorg.xbacklight xsel xclip maim
      # window manager
-     i3lock i3status xorg.xbacklight networkmanagerapplet xsel xclip maim
-     # productivity
-     slack zoom-us google-drive-ocamlfuse
+     i3lock i3status networkmanagerapplet
   ];
 
 
@@ -87,6 +83,7 @@
 
   programs.zsh.enable = true;
   
+  #TODO: move to home.nix
   programs.tmux = {
     enable = true;
     baseIndex = 1;

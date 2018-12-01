@@ -2,23 +2,48 @@
 
 {
   home.packages = [ 
-    pkgs.git
+    # shell and terminal
+    pkgs.alacritty
     pkgs.zsh 
     pkgs.zsh-powerlevel9k
     pkgs.nix-zsh-completions
     pkgs.zsh-completions
+    pkgs.tmux
+
+    # version control
+    pkgs.git
+
+    # wm / UI
     pkgs.i3
     pkgs.polybar
+
+    # scala
+    pkgs.sbt
+    pkgs.ammonite
+
+    # rustlang
+    pkgs.rustup
+
+    #editor
+    pkgs.python36Packages.neovim
+    pkgs.evince
+
+    # Dev tools
     pkgs.jq
-    pkgs.tmux
     pkgs.docker_compose
     pkgs.postman
     pkgs.awscli
     pkgs.ripgrep
     pkgs.exa
     pkgs.universal-ctags
-    pkgs.alacritty
     pkgs.ranger
+    pkgs.pgcli
+
+    # productivity
+    pkgs.slack
+    pkgs.zoom-us
+    pkgs.google-drive-ocamlfuse
+    pkgs.dropbox
   ];
 
   programs.zsh = {
