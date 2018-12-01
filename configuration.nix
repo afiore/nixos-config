@@ -24,6 +24,7 @@
   hardware.bumblebee = {
     enable = true;
     driver = "nvidia";
+    # connectDisplay = true;
   };
 
   nixpkgs.config = {
@@ -59,6 +60,7 @@
      pciutils htop
      # utils:
      p7zip keepassxc openconnect oathToolkit
+     blueman
      # build tools
      binutils gcc gnumake openssl openssl.dev pkgconfig
      # dev
@@ -77,13 +79,13 @@
      i3lock i3status xorg.xbacklight networkmanagerapplet xsel xclip maim
      # productivity
      slack zoom-us google-drive-ocamlfuse
-     # shell
-     rxvt_unicode_with-plugins urxvt_font_size urxvt_theme_switch
   ];
 
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
+
+  programs.zsh.enable = true;
   
   programs.tmux = {
     enable = true;
@@ -115,9 +117,15 @@ set-option -g renumber-windows on
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  hardware.bluetooth.enable = true;
+
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+
+  hardware.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+  };
 
   hardware.opengl.enable = true;
   hardware.opengl.extraPackages = [
@@ -132,6 +140,7 @@ set-option -g renumber-windows on
   services.xserver = {
     enable = true;
     videoDrivers = ["modesetting"];
+#    videoDrivers = ["nvidia"];
 
     libinput = {
       enable = true;

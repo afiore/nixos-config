@@ -6,13 +6,19 @@
     pkgs.zsh 
     pkgs.zsh-powerlevel9k
     pkgs.nix-zsh-completions
+    pkgs.zsh-completions
     pkgs.i3
+    pkgs.polybar
     pkgs.jq
     pkgs.tmux
     pkgs.docker_compose
     pkgs.postman
     pkgs.awscli
+    pkgs.ripgrep
+    pkgs.exa
     pkgs.universal-ctags
+    pkgs.alacritty
+    pkgs.ranger
   ];
 
   programs.zsh = {
@@ -25,7 +31,7 @@
     };
     sessionVariables = {
       "TERM" = "xterm-256color";
-      "EDITOR" = "vim";
+      "EDITOR" = "nvim";
     };
     initExtra = ''
       # set vi mode
@@ -33,34 +39,43 @@
       export KEYTIMEOUT=1
       bindkey "^R" history-incremental-search-backward
 
+      setopt autocd autopushd pushdignoredups
+
       # init prompt
       source ${pkgs.zsh-powerlevel9k}/share/zsh-powerlevel9k/powerlevel9k.zsh-theme
 
+
       export PATH=$PATH:$HOME/.cargo/bin
+
+      # set default terminal i3
+      export TERMINAL=alacritty
     '';
     shellAliases = {
       "cfgcd" = "cd ~/.config/nixpkgs";
-      "cfgbh" = "home-manager build";
-      "cfgsh" = "home-manager switch";
+      "cfgbh" = "home-manager -I nixpkgs=channel:nixpkgs-unstable build";
+      "cfgsh" = "home-manager -I nixpkgs=channel:nixpkgs-unstable switch";
       "cfgt" = "sudo nixos-rebuild test";
       "cfgs" = "sudo nixos-rebuild switch";
       "cfgeh" = "cfgcd && $EDITOR home.nix";
       "cfge" = "cfgcd && $EDITOR configuration.nix";
+      "l" = "exa --long --git --group --colour-scale";
     };
     plugins = [
       {
         # will source nix-shell.plugin.zsh
-        name = "nix-shell";
+        name = "zsh-colored-man-pages";
+        file = "colored-man-pages.plugin.zsh";
         src = pkgs.fetchFromGitHub {
-          owner = "chisui";
-          repo = "zsh-nix-shell";
+          owner = "ael-code";
+          repo = "zsh-colored-man-pages";
           rev = "master";
-          sha256 = "10g8m632s4ibbgs8ify8n4h9r4x48l95gvb57lhw4khxs6m8j30q";
+          sha256 = "158sbxrgk2j7ixdmhs63vjak5af8z75b1h1jsqa9h1ki3yrd5fk4";
         };
       }
     ];
   };
   
+
   programs.git = {
     enable = true;
     userName = "Andrea Fiore";
@@ -82,6 +97,9 @@
   };
 
   manual.manpages.enable = true;
+
+  home.stateVersion = "18.09";
+
 
   #xsession = {
   #  enable = true;
