@@ -1,6 +1,14 @@
 { pkgs, ... }:
 
-{
+let polybar = pkgs.polybar.override {
+  i3Support = true;
+  wirelesstools = pkgs.wirelesstools;
+  alsaSupport = true;
+  githubSupport = true;
+  mpdSupport = true;
+  mpd_clientlib = pkgs.mpd_clientlib;
+};
+in {
   home.packages = [ 
     # shell and terminal
     pkgs.alacritty
@@ -9,41 +17,48 @@
     pkgs.nix-zsh-completions
     pkgs.zsh-completions
     pkgs.tmux
+    pkgs.exa
+    pkgs.ranger
+    pkgs.ripgrep
+    #pkgs.bat
 
     # version control
     pkgs.git
 
     # wm / UI
     pkgs.i3
-    pkgs.polybar
+    pkgs.mpd_clientlib
+    polybar
+    pkgs.rofi
 
     # scala
     pkgs.sbt
     pkgs.ammonite
+    pkgs.jetbrains.idea-community
 
     # rustlang
     pkgs.rustup
 
     #editor
+    pkgs.neovim
     pkgs.python36Packages.neovim
-    pkgs.evince
 
     # Dev tools
     pkgs.jq
     pkgs.docker_compose
     pkgs.postman
     pkgs.awscli
-    pkgs.ripgrep
-    pkgs.exa
     pkgs.universal-ctags
-    pkgs.ranger
-    pkgs.pgcli
+#   pkgs.pgcli: figure out why it fails installing?
 
-    # productivity
+    # misc
     pkgs.slack
     pkgs.zoom-us
     pkgs.google-drive-ocamlfuse
     pkgs.dropbox
+    pkgs.taskwarrior
+    pkgs.evince
+    pkgs.wirelesstools
   ];
 
   programs.zsh = {
@@ -57,6 +72,7 @@
     sessionVariables = {
       "TERM" = "xterm-256color";
       "EDITOR" = "nvim";
+      "PAGER" = "bat";
     };
     initExtra = ''
       # set vi mode
@@ -84,6 +100,7 @@
       "cfgeh" = "cfgcd && $EDITOR home.nix";
       "cfge" = "cfgcd && $EDITOR configuration.nix";
       "l" = "exa --long --git --group --colour-scale";
+      "i3cheatsheet" = "egrep ^bind ~/.config/i3/config | bat";
     };
     plugins = [
       {

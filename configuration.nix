@@ -39,8 +39,11 @@
     };
   };
 
-  networking.networkmanager.enable = true;
-  networking.hostName = "antanix"; # Define your hostname.
+  networking = {
+    usePredictableInterfaceNames = true;
+    networkmanager.enable = true;
+    hostName = "antanix"; # Define your hostname.
+  };
 
   # Select internationalisation properties.
   i18n = {
@@ -66,11 +69,11 @@
      # build tools
      binutils gcc gnumake openssl openssl.dev pkgconfig
      # dev
-     git neovim
+     git vim
      # web
      wget curl firefoxWrapper google-chrome
      # fonts
-     source-code-pro fontconfig-ultimate
+     source-code-pro fontconfig-ultimate siji unifont font-awesome_5 fira-code fira-code-symbols noto-fonts noto-fonts-emoji font-droid
      # x11
      xorg.xcursorthemes xorg.xbacklight xsel xclip maim
      # window manager
@@ -82,7 +85,7 @@
   # started in user sessions.
 
   programs.zsh.enable = true;
-  
+
   #TODO: move to home.nix
   programs.tmux = {
     enable = true;
@@ -175,7 +178,9 @@ set-option -g renumber-windows on
   fonts = {
     enableFontDir = true;
     enableGhostscriptFonts = true;
-    fonts = with pkgs; [ source-code-pro ];
+    fonts = with pkgs; [ 
+     source-code-pro fontconfig-ultimate siji unifont font-awesome_5 fira-code fira-code-symbols noto-fonts noto-fonts-emoji font-droid 
+];
     fontconfig.dpi = 168;
   };
 
@@ -192,7 +197,6 @@ set-option -g renumber-windows on
     shell = pkgs.zsh;
   };
 
-  
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
