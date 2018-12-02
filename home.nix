@@ -28,6 +28,7 @@ in {
     pkgs.exa
     pkgs.ranger
     pkgs.ripgrep
+    pkgs.fzf
     #pkgs.bat
 
     # version control
@@ -79,25 +80,27 @@ in {
     };
     sessionVariables = {
       "TERM" = "xterm-256color";
-      "EDITOR" = "nvim";
+      "EDITOR" = "${pkgs.neovim}/bin/nvim";
       "PAGER" = "bat";
+      "TERMINAL" = "${pkgs.alacritty}/bin/alacritty";
     };
     initExtra = ''
       # set vi mode
       bindkey -v
       export KEYTIMEOUT=1
-      bindkey "^R" history-incremental-search-backward
+      # bindkey "^R" history-incremental-search-backward
 
       setopt autocd autopushd pushdignoredups
 
       # init prompt
       source ${pkgs.zsh-powerlevel9k}/share/zsh-powerlevel9k/powerlevel9k.zsh-theme
 
+      # fzf setup
+
+      source ${pkgs.fzf}/share/fzf/completion.zsh
+      source ${pkgs.fzf}/share/fzf/key-bindings.zsh
 
       export PATH=$PATH:$HOME/.cargo/bin
-
-      # set default terminal i3
-      export TERMINAL=alacritty
     '';
     shellAliases = {
       "cfgcd" = "cd ~/.config/nixpkgs";
