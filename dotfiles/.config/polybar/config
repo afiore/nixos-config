@@ -43,6 +43,7 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
+
 border-size = 4
 border-color = #00000000
 
@@ -55,10 +56,11 @@ module-margin-right = 2
 font-0 = SourceCodePro-Light:pixelsize=15;1
 font-1 = unifont:fontformat=truetype:size=12:antialias=false;0
 font-2 = siji:pixelsize=15;1
+font-3 = Font Awesome 5 Brands-Regular-400:pixelsize=15;1
 
 modules-left = i3
 modules-center = xwindow
-modules-right = filesystem alsa xkeyboard memory cpu wlan battery temperature date powermenu
+modules-right = github filesystem alsa xkeyboard memory cpu wlan battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -98,6 +100,15 @@ label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
+
+[module/github]
+type = internal/github
+token = ${file:~/.polybar-github-token}
+empty-notifications = false
+interval = 30
+label =  %notifications%
+label-active-font = 3
+format = <label>
 
 [module/filesystem]
 type = internal/fs

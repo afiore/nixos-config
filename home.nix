@@ -29,6 +29,7 @@ in {
     pkgs.ranger
     pkgs.ripgrep
     pkgs.fzf
+    pkgs.fd
     #pkgs.bat
 
     # version control
@@ -52,9 +53,13 @@ in {
     pkgs.neovim
     pkgs.python36Packages.neovim
 
+    # containers
+    pkgs.docker_compose
+    pkgs.minikube
+    pkgs.kubectl
+
     # Dev tools
     pkgs.jq
-    pkgs.docker_compose
     pkgs.postman
     pkgs.awscli
     pkgs.universal-ctags
@@ -83,6 +88,8 @@ in {
       "EDITOR" = "${pkgs.neovim}/bin/nvim";
       "PAGER" = "bat";
       "TERMINAL" = "${pkgs.alacritty}/bin/alacritty";
+      "FZF_DEFAULT_COMMAND" = "${pkgs.fd}/bin/fd --hidden --exclude .git";
+      "FZF_CTRL_T_COMMAND" = "$FZF_DEFAULT_COMMAND";
     };
     initExtra = ''
       # set vi mode
@@ -103,6 +110,7 @@ in {
       export PATH=$PATH:$HOME/.cargo/bin
     '';
     shellAliases = {
+      "vim" = "nvim";
       "cfgcd" = "cd ~/.config/nixpkgs";
       "cfgbh" = "home-manager -I nixpkgs=channel:nixpkgs-unstable build";
       "cfgsh" = "home-manager -I nixpkgs=channel:nixpkgs-unstable switch";
@@ -138,10 +146,6 @@ in {
       "co" = "checkout";
       "br" = "branch";
     };
-  #  signing = {
-  #    key = "me@yrashk.com";
-  #    signByDefault = true;
-  #  };
   };
 
   programs.home-manager = {
@@ -160,4 +164,3 @@ in {
     ".config/nvim"
   ];
 }
-
