@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/andrea/code/rmqfwd/src'
+let g:netrw_dirhist_2='/home/andrea/code/rmqfwd'
+let g:netrw_dirhist_3='/home/andrea/code/rmqfwd/bin'
+let g:netrw_dirhist_4='/home/andrea/code/rmqfwd'
+let g:netrw_dirhist_5='/home/andrea/code/rmqfwd/bin'
+let g:netrw_dirhist_6='/home/andrea/ecs/nix/nixpills'
+let g:netrw_dirhist_7='/home/andrea/code/rmqfwd/src'
+let g:netrw_dirhist_8='/home/andrea/code/rmqfwd/src/es'
+let g:netrw_dirhist_9='/home/andrea/.config/nixpkgs'

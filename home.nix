@@ -1,13 +1,21 @@
 { pkgs, ... }:
 
 let polybar = pkgs.polybar.override {
-  i3Support = true;
-  wirelesstools = pkgs.wirelesstools;
-  alsaSupport = true;
-  githubSupport = true;
-  mpdSupport = true;
-  mpd_clientlib = pkgs.mpd_clientlib;
-};
+    i3Support = true;
+    wirelesstools = pkgs.wirelesstools;
+    alsaSupport = true;
+    githubSupport = true;
+    mpdSupport = true;
+    mpd_clientlib = pkgs.mpd_clientlib;
+  };
+  dotfileDir = ./dotfiles;
+  copyDir = path: {
+    source = "${dotfileDir}/${path}";
+    target = "./${path}";
+    recursive = true;
+  };
+  copyDirs = base: paths: builtins.foldl' (h: p: h // { "${p}" = copyDir p; }) base paths;
+
 in {
   home.packages = [ 
     # shell and terminal
@@ -142,15 +150,11 @@ in {
 
   home.stateVersion = "18.09";
 
-
-  #xsession = {
-  #  enable = true;
-  #  command = "${pkgs.i3}/bin/i3";
-
-  #  #pointerCursor = {
-  #  #  name = "Vanilla-DMZ";
-  #  #  size = 64;
-  #  #};
-  #};
+  home.file = copyDirs {} [
+    ".config/i3"
+    ".config/polybar"
+    ".config/alacritty"
+    ".config/nvim"
+  ];
 }
 
