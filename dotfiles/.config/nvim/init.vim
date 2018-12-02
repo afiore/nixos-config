@@ -40,8 +40,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 
-" Elm
-Plug 'elmcast/elm-vim'
+" use system clipboard
+set clipboard+=unnamedplus
 
 " themes
 
