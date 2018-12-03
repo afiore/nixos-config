@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
-let polybar = pkgs.polybar.override {
+let
+  polybar = pkgs.polybar.override {
     i3Support = true;
     wirelesstools = pkgs.wirelesstools;
     alsaSupport = true;
@@ -58,18 +59,22 @@ in {
     pkgs.minikube
     pkgs.kubectl
 
+    # cloud services
+    pkgs.awscli
+
     # Dev tools
     pkgs.jq
     pkgs.postman
-    pkgs.awscli
     pkgs.universal-ctags
-#   pkgs.pgcli: figure out why it fails installing?
+    # TODO: add pgcli1.6 (currently installed manually)
 
     # misc
+    pkgs.languagetool
     pkgs.slack
     pkgs.zoom-us
     pkgs.google-drive-ocamlfuse
     pkgs.dropbox
+    pkgs.xorg.libxshmfence
     pkgs.taskwarrior
     pkgs.evince
     pkgs.wirelesstools
@@ -112,8 +117,8 @@ in {
     shellAliases = {
       "vim" = "nvim";
       "cfgcd" = "cd ~/.config/nixpkgs";
-      "cfgbh" = "home-manager -I nixpkgs=channel:nixpkgs-unstable build";
-      "cfgsh" = "home-manager -I nixpkgs=channel:nixpkgs-unstable switch";
+      "cfgbh" = "home-manager -I nixpkgs=channel:nixpkgs-unstable";
+      "cfgsh" = "home-manager -I nixpkgs=channel:nixpkgs-unstable";
       "cfgt" = "sudo nixos-rebuild test";
       "cfgs" = "sudo nixos-rebuild switch";
       "cfgeh" = "cfgcd && $EDITOR home.nix";
@@ -162,5 +167,6 @@ in {
     ".config/polybar"
     ".config/alacritty"
     ".config/nvim"
+    ".config/pgcli"
   ];
 }
