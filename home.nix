@@ -31,6 +31,8 @@ in {
     pkgs.ripgrep
     pkgs.fzf
     pkgs.fd
+    pkgs.ncurses
+
     #pkgs.bat
 
     # version control
