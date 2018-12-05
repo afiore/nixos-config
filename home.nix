@@ -18,68 +18,69 @@ let
   copyDirs = base: paths: builtins.foldl' (h: p: h // { "${p}" = copyDir p; }) base paths;
 
 in {
-  home.packages = [ 
+  home.packages = with pkgs; [ 
     # shell and terminal
-    pkgs.alacritty
-    pkgs.zsh 
-    pkgs.zsh-powerlevel9k
-    pkgs.nix-zsh-completions
-    pkgs.zsh-completions
-    pkgs.tmux
-    pkgs.exa
-    pkgs.ranger
-    pkgs.ripgrep
-    pkgs.fzf
-    pkgs.fd
-    pkgs.ncurses
+    alacritty
+    ncurses
+    zsh 
+    zsh-powerlevel9k
+    nix-zsh-completions
+    zsh-completions
+    tmux
+    exa
+    ranger
+    ripgrep
+    fzf
+    fd
+    fpp
 
-    #pkgs.bat
+    #bat
 
     # version control
-    pkgs.git
+    git
 
     # wm / UI
-    pkgs.i3
-    pkgs.mpd_clientlib
+    i3
+    mpd_clientlib
     polybar
-    pkgs.rofi
+    rofi
 
     # scala
-    pkgs.sbt
-    pkgs.ammonite
-    pkgs.jetbrains.idea-community
+    sbt
+    ammonite
+    jetbrains.idea-community
 
     # rustlang
-    pkgs.rustup
+    rustup
 
     #editor
-    pkgs.neovim
-    pkgs.python36Packages.neovim
+    neovim
+    python36Packages.neovim
 
     # containers
-    pkgs.docker_compose
-    pkgs.minikube
-    pkgs.kubectl
+    docker_compose
+    minikube
+    kubectl
 
     # cloud services
-    pkgs.awscli
+    awscli
 
     # Dev tools
-    pkgs.jq
-    pkgs.postman
-    pkgs.universal-ctags
+    jq
+    postman
+    universal-ctags
     # TODO: add pgcli1.6 (currently installed manually)
 
     # misc
-    pkgs.languagetool
-    pkgs.slack
-    pkgs.zoom-us
-    pkgs.google-drive-ocamlfuse
-    pkgs.dropbox
-    pkgs.xorg.libxshmfence
-    pkgs.taskwarrior
-    pkgs.evince
-    pkgs.wirelesstools
+    languagetool
+    slack
+    zoom-us
+    google-drive-ocamlfuse
+    dropbox
+    xorg.libxshmfence
+    taskwarrior
+    evince
+    wirelesstools
   ];
 
 
@@ -90,6 +91,7 @@ in {
       yank
       sidebar
       fzf-tmux-url
+      fpp
     ];
     extraConfig = ''
 
