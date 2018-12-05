@@ -86,7 +86,11 @@ in {
   programs.tmux = {
     enable = true;
     package = pkgs.tmux;
-    plugins = [];
+    plugins = with pkgs.tmuxPlugins; [
+      yank
+      sidebar
+      fzf-tmux-url
+    ];
     extraConfig = ''
 
 unbind C-b
@@ -103,6 +107,7 @@ set-window-option -g mode-keys vi
 
 set-window-option -g clock-mode-style 24
     '';
+    tmuxp.enable = true;
   };
 
 
