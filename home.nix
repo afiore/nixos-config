@@ -82,6 +82,30 @@ in {
     pkgs.wirelesstools
   ];
 
+
+  programs.tmux = {
+    enable = true;
+    package = pkgs.tmux;
+    plugins = [];
+    extraConfig = ''
+
+unbind C-b
+set -g prefix C-a
+bind C-a send-prefix
+
+set -g base-index 1
+setw -g pane-base-index 1
+set-option -g renumber-windows on
+
+set -g default-terminal "screen-256color"
+
+set-window-option -g mode-keys vi
+
+set-window-option -g clock-mode-style 24
+    '';
+  };
+
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -119,8 +143,8 @@ in {
     shellAliases = {
       "vim" = "nvim";
       "cfgcd" = "cd ~/.config/nixpkgs";
-      "cfgbh" = "home-manager -I nixpkgs=channel:nixpkgs-unstable";
-      "cfgsh" = "home-manager -I nixpkgs=channel:nixpkgs-unstable";
+      "cfgbh" = "home-manager -I nixpkgs=channel:nixpkgs-unstable build";
+      "cfgsh" = "home-manager -I nixpkgs=channel:nixpkgs-unstable switch";
       "cfgt" = "sudo nixos-rebuild test";
       "cfgs" = "sudo nixos-rebuild switch";
       "cfgeh" = "cfgcd && $EDITOR home.nix";

@@ -62,7 +62,7 @@
   environment.systemPackages = with pkgs; [
      pciutils htop
      # utils:
-     p7zip keepassxc openconnect oathToolkit tmux
+     p7zip keepassxc openconnect oathToolkit
 
      # bluetooth
      blueman
@@ -87,17 +87,17 @@
   programs.zsh.enable = true;
 
   #TODO: move to home.nix
-  programs.tmux = {
-    enable = true;
-    baseIndex = 1;
-    keyMode = "vi";
-    terminal = "xterm-256color";
-    shortcut = "a";
-    clock24 = true;
-    extraTmuxConf = ''
-set-option -g renumber-windows on
-    '';
-  };
+#  programs.tmux = {
+#    enable = true;
+#    baseIndex = 1;
+#    keyMode = "vi";
+#    terminal = "xterm-256color";
+#    shortcut = "a";
+#    clock24 = true;
+#    extraTmuxConf = ''
+#set-option -g renumber-windows on
+#    '';
+#  };
 
 
   # programs.mtr.enable = true;
