@@ -103,6 +103,8 @@ set -g base-index 1
 setw -g pane-base-index 1
 set-option -g renumber-windows on
 
+source-file "$HOME/.config/tmux-themepack/powerline/block/cyan.tmuxtheme"
+
 set -g default-terminal "screen-256color"
 
 set-window-option -g mode-keys vi
@@ -201,5 +203,6 @@ set-window-option -g clock-mode-style 24
     ".config/alacritty"
     ".config/nvim"
     ".config/pgcli"
+    ".config/tmux-themepack"
   ];
 }
