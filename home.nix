@@ -149,6 +149,12 @@ set-window-option -g clock-mode-style 24
 
       export PATH=$PATH:$HOME/.cargo/bin
     '';
+    loginExtra = ''
+      if [ -n "''${DISPLAY_TASKS+set}" ]
+      then
+        task long
+      fi
+    '';
     shellAliases = {
       "vim" = "nvim";
       "cfgcd" = "cd ~/.config/nixpkgs";
