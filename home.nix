@@ -103,9 +103,12 @@ set -g base-index 1
 setw -g pane-base-index 1
 set-option -g renumber-windows on
 
+bind-key -T prefix | split-window -h
+bind-key -T prefix - split-window
+
 source-file "$HOME/.config/tmux-themepack/powerline/block/cyan.tmuxtheme"
 
-set -g default-terminal "screen-256color"
+set -g default-terminal "screen-255color"
 
 set-window-option -g mode-keys vi
 
