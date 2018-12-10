@@ -48,8 +48,7 @@ in {
     # scala
     sbt
     ammonite
-    jetbrains.idea-community
-
+    jetbrainsUnstable.idea-community
     # rustlang
     rustup
 

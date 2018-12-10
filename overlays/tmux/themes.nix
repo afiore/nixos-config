@@ -1,9 +1,9 @@
 { fetchgit
-, tmuxPlugins
+, pkgs
 }:
 
 {
-  tmuxThemepack = tmuxPlugins.mkDerivation {
+  tmuxThemepack = pkgs.tmuxPlugins.mkDerivation {
     pluginName = "tmux-themepack";
     src = fetchgit {
       url = "https://github.com/jimeh/tmux-themepack";
