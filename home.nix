@@ -84,14 +84,14 @@ in {
   ];
 
 
-  programs.tmux = {
+  programs.tmux = with pkgs; {
     enable = true;
-    package = pkgs.tmux;
-    plugins = with pkgs.tmuxPlugins; [
-      yank
-      sidebar
-      fzf-tmux-url
-      fpp
+    package = tmux;
+    plugins = [
+      tmuxPlugins.yank
+      tmuxPlugins.fzf-tmux-url
+      tmuxThemes.tmuxThemepack
+      tmuxPlugins.fpp
     ];
     extraConfig = ''
 
@@ -106,7 +106,7 @@ set-option -g renumber-windows on
 bind-key -T prefix | split-window -h
 bind-key -T prefix - split-window
 
-source-file "$HOME/.config/tmux-themepack/powerline/block/cyan.tmuxtheme"
+source-file "${tmuxThemes.tmuxThemepack}/share/tmux-plugins/tmux-themepack/powerline/block/cyan.tmuxtheme"
 
 set -g default-terminal "screen-255color"
 
