@@ -33,6 +33,7 @@ in {
     fzf
     fd
     fpp
+    copyq
 
     #bat
 
@@ -104,6 +105,7 @@ set-option -g renumber-windows on
 
 bind-key -T prefix | split-window -h
 bind-key -T prefix - split-window
+bind-key -T prefix c new-window -c '#{pane_current_path}'
 
 source-file "${tmuxThemes.tmuxThemepack}/share/tmux-plugins/tmux-themepack/powerline/block/cyan.tmuxtheme"
 
