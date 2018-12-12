@@ -178,12 +178,10 @@ bindsym $mod+r mode "resize"
 
 
 # start polybar
-exec_always --no-startup-id $HOME/.config/polybar/lounch.sh
-# start Dropbox
-exec_always --no-startup-id $HOME/.config/i3/lounch_dropbox.sh
+exec_always --no-startup-id $HOME/.config/i3/lounch.sh polybar -r bar1
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-# bar {
-#         status_command i3status
-# }
+# start 
+exec_always --no-startup-id $HOME/.config/i3/lounch.sh copyq
+
+# start Dropbox
+#exec_always --no-startup-id $HOME/.config/i3/lounch_dropbox.sh
