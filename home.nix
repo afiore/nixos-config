@@ -34,6 +34,7 @@ in {
     fd
     fpp
     copyq
+    iftop
 
     #bat
 
