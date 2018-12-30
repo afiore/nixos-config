@@ -40,6 +40,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 
+Plug 'vmchale/dhall-vim'
+
 " use system clipboard
 set clipboard+=unnamedplus
 

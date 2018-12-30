@@ -51,8 +51,17 @@ in {
     sbt
     ammonite
     jetbrainsUnstable.idea-community
+
     # rustlang
     rustup
+
+    # misc
+    terraform
+    dhall
+    dhall-nix
+    dhall-json
+    dhall-bash
+    dhall-text
 
     #editor
     neovim
