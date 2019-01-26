@@ -41,6 +41,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 
 Plug 'vmchale/dhall-vim'
+Plug 'hashivim/vim-terraform'
+Plug 'juliosueiras/vim-terraform-completion'
 
 " use system clipboard
 set clipboard+=unnamedplus
@@ -110,7 +112,9 @@ let g:ale_lint_on_save = 0
 let g:ale_lint_on_enter = 0
 let g:ale_rust_cargo_use_check = 1
 let g:ale_rust_cargo_check_all_targets = 1
-
+let g:ale_fixers = {
+    \ 'terraform': ['fmt', 'tflint'],
+    \ }
 
 " NCM2
 " Completion

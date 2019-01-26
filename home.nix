@@ -9,6 +9,7 @@ let
     mpdSupport = true;
     mpd_clientlib = pkgs.mpd_clientlib;
   };
+
   dotfileDir = ./dotfiles;
   copyDir = path: {
     source = "${dotfileDir}/${path}";
@@ -35,6 +36,7 @@ in {
     fpp
     copyq
     iftop
+    loc
 
     #bat
 
@@ -45,27 +47,22 @@ in {
     i3
     mpd_clientlib
     polybar
-    rofi
+    scrot #screenshot tool
 
     # scala
-    sbt
     ammonite
-    jetbrainsUnstable.idea-community
 
     # rustlang
     rustup
 
-    # misc
+    # ruby
+    bundler
+
+    # ops
     terraform
-    dhall
-    dhall-nix
-    dhall-json
-    dhall-bash
-    dhall-text
 
     #editor
-    neovim
-    python36Packages.neovim
+    #neovim
 
     # containers
     docker_compose
@@ -83,8 +80,8 @@ in {
 
     # misc
     languagetool
+    graphviz
     slack
-    zoom-us
     google-drive-ocamlfuse
     dropbox
     xorg.libxshmfence
@@ -125,7 +122,7 @@ set-window-option -g mode-keys vi
 
 set-window-option -g clock-mode-style 24
     '';
-    tmuxp.enable = true;
+    tmuxp.enable = false;
   };
 
 
@@ -207,6 +204,12 @@ set-window-option -g clock-mode-style 24
       "br" = "branch";
     };
   };
+
+  programs.neovim = {
+    enable = true;
+    withPython3 = true;
+  };
+
 
   programs.home-manager = {
     enable = true;

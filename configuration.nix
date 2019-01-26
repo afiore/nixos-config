@@ -34,7 +34,6 @@
      enableGoogleTalkPlugin = true;
     };
     packageOverrides = pkgs: rec {
-      jre = pkgs.oraclejre8;
       neovim = (import ./vim.nix);
     };
   };
@@ -43,7 +42,7 @@
     usePredictableInterfaceNames = true;
     networkmanager = {
       enable = true;
-      unmanaged = [ "interface-name:ve-*" ];
+      #unmanaged = [ "interface-name:ve-*" ];
     };
     hostName = "antanix"; # Define your hostname.
   };
@@ -72,7 +71,7 @@
      # build tools
      binutils gcc gnumake openssl openssl.dev pkgconfig
      # dev
-     git vim
+     git vim sbt
      # web
      wget curl firefoxWrapper google-chrome
      # fonts
@@ -89,20 +88,6 @@
 
   programs.zsh.enable = true;
 
-  #TODO: move to home.nix
-#  programs.tmux = {
-#    enable = true;
-#    baseIndex = 1;
-#    keyMode = "vi";
-#    terminal = "xterm-256color";
-#    shortcut = "a";
-#    clock24 = true;
-#    extraTmuxConf = ''
-#set-option -g renumber-windows on
-#    '';
-#  };
-
-
   # programs.mtr.enable = true;
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
@@ -110,30 +95,6 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = false;
-
-  containers.redis-example3 = {
-    privateNetwork = true;
-    hostAddress = "192.168.103.10";
-    localAddress = "192.168.103.11";
-
-    config = { config, pkgs, ...}: {
-      services.openssh.enable = true;
-      users.users.root.openssh.authorizedKeys.keys = ["ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+AA1rF3USL+AyZdu7RKo26SzUSaUjldNB4wwKnGiBZEiibXnMaDAVr5jD05/B9xOTMHWegyRsHDtxo9nGFdwa+CE8MeKwwULf/4Bqu7vltUN774YNeRQWFTFlm05ZmV84ByC48MAnnP/ewI693ep4EgQwNx9Pm/62uLbP+xTlo2+KTVyiqMDiXJVXW/vnb3xxQ8AF0Rkqcsp44/fR/ZV21Imnx9qBXRUUihEVZvj3KS++4H3eIE3NBZR2R42QSQXHS6coC/QOZUi2zFnJb0tHTAaYGFQXIU8h3yb6iU7raya2LUsXB3EqDb3qg9Qd5NSdwy5WwOK5TAgC6kjhCE65 andrfior@C02N1367FD57"];
-      services.redis = {
-        enable = true;
-        logLevel = "debug";
-        databases = 5;
-        openFirewall = true;
-        extraConfig = ''
-          protected-mode no
-          '';
-      };
-      networking.firewall = {
-        enable = true;
-#        allowedTCPPorts = [6379 22];
-      };
-    };
-  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
