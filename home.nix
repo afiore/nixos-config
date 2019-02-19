@@ -47,7 +47,10 @@ in {
     i3
     mpd_clientlib
     polybar
-    scrot #screenshot tool
+    scrot     # screenshot tool
+
+    #libnotify # desktop notifications
+    #dunst
 
     # scala
     ammonite
@@ -66,14 +69,14 @@ in {
 
     # containers
     docker_compose
-    minikube
+    minikubeLatest
     kubectl
-
     # cloud services
     awscli
 
     # Dev tools
     jq
+    yq
     postman
     universal-ctags
     # TODO: add pgcli1.6 (currently installed manually)
@@ -88,6 +91,12 @@ in {
     taskwarrior
     evince
     wirelesstools
+    acpi
+
+    # security
+    pass
+    passff-host
+    keybase
   ];
 
 
@@ -122,7 +131,7 @@ set-window-option -g mode-keys vi
 
 set-window-option -g clock-mode-style 24
     '';
-    tmuxp.enable = false;
+    tmuxp.enable = true;
   };
 
 
@@ -158,6 +167,9 @@ set-window-option -g clock-mode-style 24
       source ${pkgs.fzf}/share/fzf/completion.zsh
       source ${pkgs.fzf}/share/fzf/key-bindings.zsh
 
+      # minikube automcompletion
+      # source <(${pkgs.minikube}/bin/minikube completion zsh)
+
       export PATH=$PATH:$HOME/.cargo/bin
     '';
     loginExtra = ''
@@ -171,8 +183,8 @@ set-window-option -g clock-mode-style 24
       "cfgcd" = "cd ~/.config/nixpkgs";
       "cfgbh" = "home-manager -I nixpkgs=channel:nixpkgs-unstable build";
       "cfgsh" = "home-manager -I nixpkgs=channel:nixpkgs-unstable switch";
-      "cfgt" = "sudo nixos-rebuild test";
-      "cfgs" = "sudo nixos-rebuild switch";
+      "cfgt" = "sudo nixos-rebuild -I nixpkgs=channel:nixpkgs-unstable test";
+      "cfgs" = "sudo nixos-rebuild -I nixpkgs=channel:nixpkgs-unstable  switch";
       "cfgeh" = "cfgcd && $EDITOR home.nix";
       "cfge" = "cfgcd && $EDITOR configuration.nix";
       "l" = "exa --long --git --group --colour-scale";
@@ -190,6 +202,18 @@ set-window-option -g clock-mode-style 24
           sha256 = "158sbxrgk2j7ixdmhs63vjak5af8z75b1h1jsqa9h1ki3yrd5fk4";
         };
       }
+      {
+        name = "pass-zsh-completion";
+        file = "pass-zsh-completion.plugin.zsh";
+        src = pkgs.fetchFromGitHub {
+          owner = "ninrod";
+          repo = "pass-zsh-completion";
+          rev = "master";
+          sha256 = "1z83hgdljl7yqd1lqb10an8zkrv7s01khky27mgc1wargkslkxi9";
+        };
+      }
+
+
     ];
   };
   
@@ -215,6 +239,9 @@ set-window-option -g clock-mode-style 24
     enable = true;
     path = https://github.com/rycee/home-manager/archive/master.tar.gz;
   };
+
+  services.dunst.enable = false;
+  services.keybase.enable = true;
 
   manual.manpages.enable = true;
 
