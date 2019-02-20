@@ -70,7 +70,7 @@ in {
     # containers
     docker_compose
     minikubeLatest
-    kubectl
+    #kubectl
     # cloud services
     awscli
 
@@ -168,7 +168,7 @@ set-window-option -g clock-mode-style 24
       source ${pkgs.fzf}/share/fzf/key-bindings.zsh
 
       # minikube automcompletion
-      # source <(${pkgs.minikube}/bin/minikube completion zsh)
+      source <(${pkgs.minikubeLatest}/bin/minikube completion zsh)
 
       export PATH=$PATH:$HOME/.cargo/bin
     '';
