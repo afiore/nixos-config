@@ -24,7 +24,7 @@
   hardware.bumblebee = {
     enable = false;
     driver = "nvidia";
-    # connectDisplay = true;
+    connectDisplay = true;
   };
 
   nixpkgs.config = {
@@ -75,11 +75,13 @@
      # web
      wget curl firefoxWrapper google-chrome
      # fonts
-     source-code-pro fontconfig-ultimate siji unifont font-awesome_5 fira-code fira-code-symbols noto-fonts noto-fonts-emoji font-droid
+     source-code-pro fontconfig-ultimate siji unifont font-awesome_5 fira-code fira-code-symbols noto-fonts noto-fonts-emoji
      # x11
      xorg.xcursorthemes xorg.xbacklight xsel xclip maim
      # window manager
      i3lock i3status networkmanagerapplet
+     # security
+     gnupg
   ];
 
 
@@ -89,7 +91,7 @@
   programs.zsh.enable = true;
 
   # programs.mtr.enable = true;
-  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
+  programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
   # List services that you want to enable:
 
@@ -104,6 +106,16 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.avahi.enable = true;
+
+  #services.gollum = {
+  #  enable = true;
+  #  # TODO:
+  #  # - create folder programmatically
+  #  # - avoid hardcoding home dir
+  #  stateDir = /home/andrea/docs/learning-notes.wiki;
+
+  #};
 
   hardware.bluetooth.enable = true;
 
@@ -116,6 +128,7 @@
   };
 
   hardware.opengl.enable = true;
+  hardware.opengl.driSupport32Bit = true;
   hardware.opengl.extraPackages = [
     pkgs.vaapiIntel
     pkgs.libvdpau-va-gl
@@ -128,7 +141,7 @@
   services.xserver = {
     enable = true;
     videoDrivers = ["modesetting"];
-#    videoDrivers = ["nvidia"];
+#    videoDrivers = ["nvidia" "intell"];
 
     libinput = {
       enable = true;
@@ -145,7 +158,8 @@
     desktopManager = {
       xterm.enable = false;
       default = "none";
-      plasma5.enable = true;
+      plasma5.enable = false;
+      gnome3.enable = true;
     };
 
     windowManager = {
@@ -167,7 +181,7 @@
     enableFontDir = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [ 
-     source-code-pro fontconfig-ultimate siji unifont font-awesome_5 fira-code fira-code-symbols noto-fonts noto-fonts-emoji font-droid 
+     source-code-pro fontconfig-ultimate siji unifont font-awesome_5 fira-code fira-code-symbols noto-fonts noto-fonts-emoji
 ];
     fontconfig.dpi = 168;
   };

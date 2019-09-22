@@ -40,9 +40,21 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 
+
+"Golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+
+"Dhall
 Plug 'vmchale/dhall-vim'
+
+" Terraform
 Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
+
+"Puppet
+Plug 'rodjek/vim-puppet'
+
 
 " use system clipboard
 set clipboard+=unnamedplus
@@ -93,7 +105,11 @@ set hidden
 
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'go': ['gopls'],
+    \ 'scala': ['metals-vim'],
     \ }
+
+autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
 
 " Automatically start language servers.
 let g:LanguageClient_autoStart = 1

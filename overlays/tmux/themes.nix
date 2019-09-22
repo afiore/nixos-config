@@ -7,8 +7,8 @@
     pluginName = "tmux-themepack";
     src = fetchgit {
       url = "https://github.com/jimeh/tmux-themepack";
-      rev = "126150da5e89b262fec94dd7b3d8bcd0966646a9";
-      sha256 = "0dwgpfjz4bbmizmr7fh73rhl121dmaq9s4pb9p9f3ccjlkm0i14d";
+      rev = "1b1b8098419daacb92ca401ad6ee0ca6894a40ca";
+      sha256 = "07nbfpghydwidvpd4xm0qzrw52nnkiv42h4ckpnzc19jf1k481ba";
     };
   };
 }

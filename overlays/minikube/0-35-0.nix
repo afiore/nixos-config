@@ -14,7 +14,7 @@ let
 in buildGoPackage rec {
   pname   = "minikube";
   name    = "${pname}-${version}";
-  version = "0.34.1";
+  version = "0.35.0";
 
   kubernetesVersion = "1.11.2";
 

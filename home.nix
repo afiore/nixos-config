@@ -1,15 +1,6 @@
 { pkgs, ... }:
 
 let
-  polybar = pkgs.polybar.override {
-    i3Support = true;
-    wirelesstools = pkgs.wirelesstools;
-    alsaSupport = true;
-    githubSupport = true;
-    mpdSupport = true;
-    mpd_clientlib = pkgs.mpd_clientlib;
-  };
-
   dotfileDir = ./dotfiles;
   copyDir = path: {
     source = "${dotfileDir}/${path}";
@@ -37,29 +28,28 @@ in {
     copyq
     iftop
     loc
-
-    #bat
+    zip
+    unzip
+    tldr
+    gnome3.gnome-tweaks
+    rocksdb
 
     # version control
     git
 
     # wm / UI
-    i3
     mpd_clientlib
-    polybar
-    scrot     # screenshot tool
 
     #libnotify # desktop notifications
     #dunst
 
     # scala
     ammonite
+    coursier
+    jetbrains.idea-community
 
     # rustlang
     rustup
-
-    # ruby
-    bundler
 
     # ops
     terraform
@@ -69,16 +59,20 @@ in {
 
     # containers
     docker_compose
-    minikubeLatest
-    #kubectl
+    minikube
+    kind
+    kompose
     # cloud services
     awscli
+    google-cloud-sdk
 
     # Dev tools
     jq
     yq
     postman
     universal-ctags
+    lensesCli
+    confluent-platform
     # TODO: add pgcli1.6 (currently installed manually)
 
     # misc
@@ -92,11 +86,11 @@ in {
     evince
     wirelesstools
     acpi
+    gotop
 
     # security
     pass
     passff-host
-    keybase
   ];
 
 
@@ -167,10 +161,13 @@ set-window-option -g clock-mode-style 24
       source ${pkgs.fzf}/share/fzf/completion.zsh
       source ${pkgs.fzf}/share/fzf/key-bindings.zsh
 
-      # minikube automcompletion
-      source <(${pkgs.minikubeLatest}/bin/minikube completion zsh)
+      # kubectl automcompletion
+      source <(~/bin/kubectl completion zsh)
+      source <(${pkgs.kompose}/bin/kompose completion zsh)
 
       export PATH=$PATH:$HOME/.cargo/bin
+      export PATH=$PATH:$HOME/.ngs/bin
+      export PATH=$PATH:$HOME/go/bin
     '';
     loginExtra = ''
       if [ -n "''${DISPLAY_TASKS+set}" ]
@@ -234,6 +231,18 @@ set-window-option -g clock-mode-style 24
     withPython3 = true;
   };
 
+  programs.go = {
+    enable = true;
+    packages = {
+      "golang.org/x/text" = builtins.fetchGit "https://go.googlesource.com/text";
+      "golang.org/x/time" = builtins.fetchGit "https://go.googlesource.com/time";
+    };
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   programs.home-manager = {
     enable = true;
@@ -241,7 +250,7 @@ set-window-option -g clock-mode-style 24
   };
 
   services.dunst.enable = false;
-  services.keybase.enable = true;
+  services.keybase.enable = false;
 
   manual.manpages.enable = true;
 
